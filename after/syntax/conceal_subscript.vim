@@ -12,9 +12,11 @@ syntax match Normal '\v<[[:alpha:]_]+4>'ms=e conceal cchar=₄
 syntax match Normal '\v<[[:alpha:]_]+5>'ms=e conceal cchar=₅
 syntax match Normal '\v<[[:alpha:]_]+6>'ms=e conceal cchar=₆
 syntax match Normal '\v<[[:alpha:]_]+7>'ms=e conceal cchar=₇
-syntax match Normal '\v<[[:alpha:]_]+8>'ms=e conceal cchar=₈
+" syntax match Normal '\v<[[:alpha:]_]+8>'ms=e conceal cchar=₈
+" the ranges avoid f8, u8,i8
+syntax match Normal '\v<[a-eg-hj-tv-z_]+8>'ms=e conceal cchar=₈
 syntax match Normal '\v<[[:alpha:]_]+9>'ms=e conceal cchar=₉
-
+"
 " Numbers
 syntax match Normal '\v[^_]\zs_0\ze>' conceal cchar=₀
 syntax match Normal '\v[^_]\zs_1\ze>' conceal cchar=₁
@@ -44,33 +46,33 @@ syntax match Normal '\v[^_]\zs_[nN]\ze>' conceal cchar=ₙ
 syntax match Normal '\v[^_]\zs_[mM]\ze>' conceal cchar=ₘ
 syntax match Normal '\v[^_]\zs_[tT]\ze>' conceal cchar=ₜ
 
-if match(syntax, "conceal_greek")
-	syntax match Normal '_beta' conceal cchar=ᵦ
-	syntax match Normal '_rho' conceal cchar=ᵨ
-	syntax match Normal '_phi' conceal cchar=ᵩ
-	syntax match Normal '_gamma' conceal cchar=ᵧ
-	syntax match Normal '_chi' conceal cchar=ᵪ
-endif
+" if match(syntax, "conceal_greek")
+" 	syntax match Normal '_beta' conceal cchar=ᵦ
+" 	syntax match Normal '_rho' conceal cchar=ᵨ
+" 	syntax match Normal '_phi' conceal cchar=ᵩ
+" 	syntax match Normal '_gamma' conceal cchar=ᵧ
+" 	syntax match Normal '_chi' conceal cchar=ᵪ
+" endif
 
 
 " powers
-if (g:conceal_powers == 1)
-	syntax match Normal '\v\zs ?\*\* ?2\ze>([^.]|$)' conceal cchar=²
-	syntax match Normal '\v\zs ?\*\* ?n\ze>([^.]|$)' conceal cchar=ⁿ
-	syntax match Normal '\v\zs ?\*\* ?i\ze>([^.]|$)' conceal cchar=ⁱ
-	syntax match Normal '\v\zs ?\*\* ?j\ze>([^.]|$)' conceal cchar=ʲ
-	syntax match Normal '\v\zs ?\*\* ?k\ze>([^.]|$)' conceal cchar=ᵏ
-	syntax match Normal '\v\zs ?\*\* ?t\ze>([^.]|$)' conceal cchar=ᵗ
-	syntax match Normal '\v\zs ?\*\* ?x\ze>([^.]|$)' conceal cchar=ˣ
-	syntax match Normal '\v\zs ?\*\* ?y\ze>([^.]|$)' conceal cchar=ʸ
-	syntax match Normal '\v\zs ?\*\* ?z\ze>([^.]|$)' conceal cchar=ᶻ
-	syntax match Normal '\v\zs ?\*\* ?a\ze>([^.]|$)' conceal cchar=ᵃ
-	syntax match Normal '\v\zs ?\*\* ?b\ze>([^.]|$)' conceal cchar=ᵇ
-	syntax match Normal '\v\zs ?\*\* ?c\ze>([^.]|$)' conceal cchar=ᶜ
-	syntax match Normal '\v\zs ?\*\* ?d\ze>([^.]|$)' conceal cchar=ᵈ
-	syntax match Normal '\v\zs ?\*\* ?e\ze>([^.]|$)' conceal cchar=ᵉ
-	syntax match Normal '\v\zs ?\*\* ?p\ze>([^.]|$)' conceal cchar=ᵖ
-	syntax match Normal '\v\zs ?\*\* ?l\ze>([^.]|$)' conceal cchar=ˡ
-	syntax match Normal '\v\zs ?\*\* ?m\ze>([^.]|$)' conceal cchar=ᵐ
-endif
-
+" if (g:conceal_powers == 1)
+" 	syntax match Normal '\v\zs ?\*\* ?2\ze>([^.]|$)' conceal cchar=²
+" 	syntax match Normal '\v\zs ?\*\* ?n\ze>([^.]|$)' conceal cchar=ⁿ
+" 	syntax match Normal '\v\zs ?\*\* ?i\ze>([^.]|$)' conceal cchar=ⁱ
+" 	syntax match Normal '\v\zs ?\*\* ?j\ze>([^.]|$)' conceal cchar=ʲ
+" 	syntax match Normal '\v\zs ?\*\* ?k\ze>([^.]|$)' conceal cchar=ᵏ
+" 	syntax match Normal '\v\zs ?\*\* ?t\ze>([^.]|$)' conceal cchar=ᵗ
+" 	syntax match Normal '\v\zs ?\*\* ?x\ze>([^.]|$)' conceal cchar=ˣ
+" 	syntax match Normal '\v\zs ?\*\* ?y\ze>([^.]|$)' conceal cchar=ʸ
+" 	syntax match Normal '\v\zs ?\*\* ?z\ze>([^.]|$)' conceal cchar=ᶻ
+" 	syntax match Normal '\v\zs ?\*\* ?a\ze>([^.]|$)' conceal cchar=ᵃ
+" 	syntax match Normal '\v\zs ?\*\* ?b\ze>([^.]|$)' conceal cchar=ᵇ
+" 	syntax match Normal '\v\zs ?\*\* ?c\ze>([^.]|$)' conceal cchar=ᶜ
+" 	syntax match Normal '\v\zs ?\*\* ?d\ze>([^.]|$)' conceal cchar=ᵈ
+" 	syntax match Normal '\v\zs ?\*\* ?e\ze>([^.]|$)' conceal cchar=ᵉ
+" 	syntax match Normal '\v\zs ?\*\* ?p\ze>([^.]|$)' conceal cchar=ᵖ
+" 	syntax match Normal '\v\zs ?\*\* ?l\ze>([^.]|$)' conceal cchar=ˡ
+" 	syntax match Normal '\v\zs ?\*\* ?m\ze>([^.]|$)' conceal cchar=ᵐ
+" endif
+"
