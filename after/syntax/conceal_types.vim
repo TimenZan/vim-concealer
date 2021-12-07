@@ -17,13 +17,15 @@ syntax match Type '\v<bool(\(|[^\s)\],:])@!' conceal cchar=𝔹
 
 " TODO(feat): avoid or change if `void*` or `void *`
 " TODO(cosmetic): distinguish void and null
-syntax keyword Type void         conceal cchar=∅
+" TODO(consider): `char*` as str
+syntax match Type '\vvoid>'         conceal cchar=∅
+syntax match Type '\vvoid *\*'         conceal cchar=◎
 syntax keyword Type boolean         conceal cchar=𝔹
 syntax keyword Type bool conceal cchar=𝔹
 syntax keyword Type unsigned size_t    conceal cchar=ℕ
-syntax match Type '\vint|Integer|short|long|Long' conceal cchar=ℤ
-syntax match Type '\vint\d\d\_t' conceal cchar=ℤ
-syntax match Type '\vuint\d\d\_t' conceal cchar=ℕ
+syntax match Type '\v<int>|<Integer>|<short>|<long>|<Long>' conceal cchar=ℤ
+syntax match Type '\<int\d\d_t' conceal cchar=ℤ
+syntax match Type '\<uint\d\d_t' conceal cchar=ℕ
 syntax keyword Type char         conceal cchar=∁
 syntax keyword Type float Float conceal cchar=ℝ
 syntax keyword Type double Double conceal cchar=𝔻

@@ -12,8 +12,11 @@ consider: `.get(i)`
 `[:digit:]` as subscript
 `[:alpha:]` as subscript where available
 `const`
-[c]: `malloc`, `free`, `case`
+[c]: `malloc`, `free`, `case`, `switch`, `default`, `typedef`, `const`
+[rust]: `std::`
+[c++]: `std::`, `auto`
 [java]: `new`, `implements`, `.equals`, `<>`, `()`, `private`, `public`, `static`, `var`
+[java]: `import`, `package`
 [java]: consider: `this`, `.length`, `.size()`, `.isEmpty()`, `.add`, `super`
 [java]: consider: common std class names
 [java]: consider: `[]` as superscript 2
