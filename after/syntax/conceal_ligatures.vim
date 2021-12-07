@@ -25,6 +25,8 @@ syntax match Operator '++\ze[^+]' conceal cchar=⧺
 syntax match Operator '\<forall\>' conceal cchar=∀
 syntax match Operator '-<' conceal cchar=↢
 syntax match Operator '>-' conceal cchar=↣
+syntax match Operator '>>\ze\_[[:alpha:][:space:]_()[\]]' conceal cchar=»
+syntax match Operator '<<\ze\_[[:alpha:][:space:]_()[\]]' conceal cchar=«
 syntax match Operator '<<' conceal cchar=≺
 syntax match Operator '>>' conceal cchar=≻
 syntax match Operator '-<<' conceal cchar=⤛
@@ -39,6 +41,8 @@ if (v:false)
     syntax match hsNiceOperator '->' conceal cchar=→
     syntax match hsNiceOperator '=>' conceal cchar=⇒
     syntax match hsNiceOperator '\:\:' conceal cchar=∷
+    syntax match hsNiceOperator "\.\." conceal cchar=‥
+    syntax match hsNiceOperator "\.\." conceal cchar=…
 else
     syntax match hsLRArrowHead contained '>' conceal cchar= 
     syntax match hsLRArrowTail contained '-' conceal cchar=→
@@ -53,3 +57,12 @@ else
     syntax match hsLRDArrowFull '=>' contains=hsLRDArrowHead,hsLRDArrowTail
 endif
 
+" conceal single characters with replacement
+if(v:false)
+if Cf('*')
+    syntax match hsNiceOperator "*" conceal cchar=⋅
+" 'x' option to disable default concealing of asterisk with '×' sign.
+elseif !Cf('x')
+    syntax match hsNiceOperator "*" conceal cchar=×
+endif
+endif

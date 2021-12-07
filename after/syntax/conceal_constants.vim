@@ -7,6 +7,9 @@ endif
 syntax keyword Keyword break conceal cchar=◁
 syntax keyword Keyword continue conceal cchar=↻
 syntax keyword Keyword return conceal cchar=◀
+" Haskell monad operators
+" syntax match hsNiceOperator "\<return\>" conceal cchar=η
+" syntax match hsNiceOperator "\<join\>"   conceal cchar=µ
 " syntax keyword Keyword return conceal cchar=⏎
 syntax match Keyword '\v\\n' conceal cchar=⏎
 syntax match Conditional /\v<if>/ conceal cchar=▸
@@ -82,19 +85,23 @@ syntax keyword Type boolean         conceal cchar=𝔹
 syntax keyword Type unsigned size_t    conceal cchar=ℕ
 syntax keyword Type int Integer short long Long    conceal cchar=ℤ
 syntax keyword Type char         conceal cchar=∁
-syntax keyword Type float Float double Double conceal cchar=ℝ
+syntax keyword Type float Float conceal cchar=ℝ
+syntax keyword Type double Double conceal cchar=𝔻
 syntax keyword Type str string String conceal cchar=𝐒
 syntax match Normal '\v<String(::)?(new|from)?' conceal cchar=𝐒
 " TODO(feat): add Rust etc types
 syntax keyword Type f32 conceal cchar=ℝ
-syntax keyword Type f64 conceal cchar=ℝ
+syntax keyword Type f64 conceal cchar=𝔻
 syntax keyword Type i32 conceal cchar=ℤ
 syntax keyword Type i64 conceal cchar=ℤ
 syntax keyword Type isize conceal cchar=ℤ
+syntax match Type '\<Natural\>'  conceal cchar=ℕ
+syntax match Type '\<Nat\>'  conceal cchar=ℕ
 syntax keyword Type u32 conceal cchar=ℕ
 syntax keyword Type u64 conceal cchar=ℕ
 syntax keyword Type usize conceal cchar=ℕ
 syntax keyword Type bool conceal cchar=𝔹
+syntax match Type '\<Rational\>' conceal cchar=ℚ
 
 
 " TODO(refactor): Make case insensitive
@@ -104,6 +111,8 @@ syntax keyword Boolean false conceal cchar=𝐅
 syntax keyword Boolean FALSE conceal cchar=𝐅
 syntax keyword Boolean true conceal cchar=𝐓
 syntax keyword Boolean TRUE conceal cchar=𝐓
+" syntax match Boolean '\<True\>'  conceal cchar=𝑇
+" syntax match Boolean '\<False\>' conceal cchar=𝐹
 syntax keyword Constant undefined conceal cchar=⊥
 syntax keyword Constant NULL null Null conceal cchar=∅
 syntax keyword Constant None conceal cchar=∅
