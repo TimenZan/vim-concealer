@@ -1,36 +1,3 @@
-" vim: sw=4
-"=============================================================================
-" What Is This: Add some conceal operator for your haskell files
-" File:         haskell.vim (conceal enhancement)
-" Last Change:  2011-09-07
-" Version:      1.3.2
-" Require:
-"   set nocompatible
-"     somewhere on your .vimrc
-"
-"   Vim 7.3 or Vim compiled with conceal patch.
-"   Use --with-features=big or huge in order to compile it in.
-"
-" Usage:
-"   Drop this file in your
-"       ~/.vim/after/syntax folder (Linux/MacOSX/BSD...)
-"       ~/vimfiles/after/syntax folder (Windows)
-"
-"   For this script to work, you have to set the encoding
-"   to utf-8 :set enc=utf-8
-"
-" Additional:
-"     * if you want to avoid the loading, add the following
-"       line in your .vimrc :
-"        let g:no_haskell_conceal = 1
-"  Changelog:
-"   - 1.3.1: putting undefined in extra conceal, not appearing on windows
-"   - 1.3: adding new arrow characters used by GHC in Unicode extension.
-"   - 1.2: Fixing conceal level to be local (thx Erlend Hamberg)
-"   - 1.1: Better handling of non utf-8 systems, and avoid some
-"           concealing operations on windows on some fonts
-"
-
 " Cf - check a flag. Return true if the flag is specified.
 function! Cf(flag)
     return exists('g:hscoptions') && stridx(g:hscoptions, a:flag) >= 0
@@ -40,81 +7,20 @@ if exists('g:no_haskell_conceal') || !has('conceal') || &enc != 'utf-8'
     finish
 endif
 
-" vim: set fenc=utf-8:
 syntax match hsNiceOperator "\\\ze[[:alpha:][:space:]_([]" conceal cchar=λ
 
-" 'q' option to disable concealing of scientific constants (e.g. π).
-if !Cf('q')
-    syntax match hsNiceOperator "\<pi\>" conceal cchar=π
-    syntax match hsNiceOperator "\<tau\>" conceal cchar=τ
-    syntax match hsNiceOperator "\<planckConstant\>" conceal cchar=ℎ
-    syntax match hsNiceOperator "\<reducedPlanckConstant\|planckConstantOver2Pi\|hbar\|hslash\>" conceal cchar=ℏ
-endif
-
-syntax match hsNiceOperator "==" conceal cchar=≡
-syntax match hsNiceOperator "\/=" conceal cchar=≢
-
-let s:extraConceal = 1
-" Some windows font don't support some of the characters,
-" so if they are the main font, we don't load them :)
-if has("win32")
-    let s:incompleteFont = [ 'Consolas'
-                        \ , 'Lucida Console'
-                        \ , 'Courier New'
-                        \ ]
-    let s:mainfont = substitute( &guifont, '^\([^:,]\+\).*', '\1', '')
-    for s:fontName in s:incompleteFont
-        if s:mainfont ==? s:fontName
-            let s:extraConceal = 0
-            break
-        endif
-    endfor
-endif
-
 if s:extraConceal
-    syntax match hsNiceOperator "\<undefined\>" conceal cchar=⊥
-
-    " Match greater than and lower than w/o messing with Kleisli composition
-    syntax match hsNiceOperator "<=\ze[^<]" conceal cchar=≤
-    syntax match hsNiceOperator ">=\ze[^>]" conceal cchar=≥
-
     " Redfining to get proper '::' concealing
     syntax match hs_DeclareFunction /^[a-z_(]\S*\(\s\|\n\)*::/me=e-2 nextgroup=hsNiceOperator contains=hs_FunctionName,hs_OpFunctionName
 
-    syntax match hsNiceoperator "!!" conceal cchar=‼
-    syntax match hsNiceoperator "++\ze[^+]" conceal cchar=⧺
-    syntax match hsNiceOperator "\<forall\>" conceal cchar=∀
-    syntax match hsNiceOperator "-<" conceal cchar=↢
-    syntax match hsNiceOperator ">-" conceal cchar=↣
-    syntax match hsNiceOperator "-<<" conceal cchar=⤛
-    syntax match hsNiceOperator ">>-" conceal cchar=⤜
     " the star does not seem so good...
     " syntax match hsNiceOperator "*" conceal cchar=★
-    syntax match hsNiceOperator "`div`" conceal cchar=÷
 
     " Only replace the dot, avoid taking spaces around.
     syntax match hsNiceOperator /\s\.\s/ms=s+1,me=e-1 conceal cchar=∘
 
-    syntax match hsQQEnd "|\]" contained conceal cchar=〛
-    " sy match hsQQEnd "|\]" contained conceal=〚
+    syntax match hsQQEnd '|\]' contained conceal cchar=〛
 
-    syntax match hsNiceOperator "`elem`" conceal cchar=∈
-    syntax match hsNiceOperator "`notElem`" conceal cchar=∉
-    syntax match hsNiceOperator "`isSubsetOf`" conceal cchar=⊆
-    syntax match hsNiceOperator "`union`" conceal cchar=∪
-    syntax match hsNiceOperator "`intersect`" conceal cchar=∩
-    syntax match hsNiceOperator "\\\\\ze[[:alpha:][:space:]_([]" conceal cchar=∖
-
-    syntax match hsNiceOperator "||\ze[[:alpha:][:space:]_([]" conceal cchar=∨
-    syntax match hsNiceOperator "&&\ze[[:alpha:][:space:]_([]" conceal cchar=∧
-
-    syntax match hsNiceOperator "<\*>"      conceal cchar=⊛
-    syntax match hsNiceOperator "`mappend`" conceal cchar=⊕
-    syntax match hsNiceOperator "\<mappend\>" conceal cchar=⊕
-    syntax match hsNiceOperator "<>"        conceal cchar=⊕
-    syntax match hsNiceOperator "\<empty\>" conceal cchar=∅
-    syntax match hsNiceOperator "\<mzero\>" conceal cchar=∅
-    syntax match hsNiceOperator "\<mempty\>" conceal cchar=∅
 endif
 
 hi link hsNiceOperator Operator
@@ -123,65 +29,20 @@ setlocal conceallevel=2
 
 " '℘' option to disable concealing of powerset function
 if !Cf('℘')
-    syntax match hsNiceOperator "\<powerset\>" conceal cchar=℘
+    syntax match hsNiceOperator '\<powerset\>' conceal cchar=℘
 endif
 
 " '𝐒' option to disable String type to 𝐒 concealing
 if !Cf('𝐒')
-    syntax match hsNiceOperator "\<String\>"  conceal cchar=𝐒
+    syntax match hsNiceOperator '\<String\>'  conceal cchar=𝐒
 endif
 
 " '𝐓' option to disable Text type to 𝐓 concealing
 if !Cf('𝐓')
-    syntax match hsNiceOperator "\<Text\>"    conceal cchar=𝐓
-endif
-
-" '𝐄' option to disable Either/Right/Left to 𝐄/𝑅/𝐿 concealing
-if !Cf('𝐄')
-    syntax match hsNiceOperator "\<Either\>"  conceal cchar=𝐄
-    syntax match hsNiceOperator "\<Right\>"   conceal cchar=𝑅
-    syntax match hsNiceOperator "\<Left\>"    conceal cchar=𝐿
-endif
-
-" '𝐌' option to disable Maybe/Just/Nothing to 𝐌/𝐽/𝑁 concealing
-if !Cf('𝐌')
-    syntax match hsNiceOperator "\<Maybe\>"   conceal cchar=𝐌
-    syntax match hsNiceOperator "\<Just\>"    conceal cchar=𝐽
-    syntax match hsNiceOperator "\<Nothing\>" conceal cchar=𝑁
-endif
-
-" 'A' option to not try to preserve indentation.
-if Cf('A')
-    syntax match hsNiceOperator "<-" conceal cchar=←
-    syntax match hsNiceOperator "->" conceal cchar=→
-    syntax match hsNiceOperator "=>" conceal cchar=⇒
-    syntax match hsNiceOperator "\:\:" conceal cchar=∷
-else
-    syntax match hsLRArrowHead contained ">" conceal cchar= 
-    syntax match hsLRArrowTail contained "-" conceal cchar=→
-    syntax match hsLRArrowFull "->" contains=hsLRArrowHead,hsLRArrowTail
-
-    syntax match hsRLArrowHead contained "<" conceal cchar=←
-    syntax match hsRLArrowTail contained "-" conceal cchar= 
-    syntax match hsRLArrowFull "<-" contains=hsRLArrowHead,hsRLArrowTail
-
-    syntax match hsLRDArrowHead contained ">" conceal cchar= 
-    syntax match hsLRDArrowTail contained "=" conceal cchar=⇒
-    syntax match hsLRDArrowFull "=>" contains=hsLRDArrowHead,hsLRDArrowTail
+    syntax match hsNiceOperator '\<Text\>'    conceal cchar=𝐓
 endif
 
 " 's' option to disable space consumption after ∑,∏,√ and ¬ functions.
-if Cf('s')
-    syntax match hsNiceOperator "\<sum\>"                        conceal cchar=∑
-    syntax match hsNiceOperator "\<product\>"                    conceal cchar=∏
-    syntax match hsNiceOperator "\<sqrt\>"                       conceal cchar=√
-    syntax match hsNiceOperator "\<not\>"                        conceal cchar=¬
-else
-    syntax match hsNiceOperator "\<sum\>\(\ze\s*[.$]\|\s*\)"     conceal cchar=∑
-    syntax match hsNiceOperator "\<product\>\(\ze\s*[.$]\|\s*\)" conceal cchar=∏
-    syntax match hsNiceOperator "\<sqrt\>\(\ze\s*[.$]\|\s*\)"    conceal cchar=√
-    syntax match hsNiceOperator "\<not\>\(\ze\s*[.$]\|\s*\)"     conceal cchar=¬
-endif
 
 " '*' option to enable concealing of asterisk with '⋅' sign.
 if Cf('*')

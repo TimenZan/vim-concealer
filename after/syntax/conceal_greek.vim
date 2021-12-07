@@ -19,7 +19,7 @@ syntax keyword Normal mu MU conceal cchar=μ
 syntax keyword Normal nu NU conceal cchar=ν
 syntax keyword Normal Xi conceal cchar=Ξ
 syntax keyword Normal xi XI conceal cchar=ξ
-syntax keyword Normal Pi conceal cchar=Π
+syntax keyword Normal pi PI Pi conceal cchar=Π
 syntax keyword Normal rho RHO conceal cchar=ρ
 syntax keyword Normal sigma SIGMA conceal cchar=σ
 syntax keyword Normal tau TAU conceal cchar=τ
@@ -33,3 +33,6 @@ syntax keyword Normal Omega conceal cchar=Ω
 syntax keyword Normal omega OMEGA conceal cchar=ω
 syntax keyword Normal nabla NABLA conceal cchar=∇
 
+
+syntax match hsNiceOperator '\<planckConstant\>' conceal cchar=ℎ
+syntax match hsNiceOperator '\<reducedPlanckConstant\|planckConstantOver2Pi\|hbar\|hslash\>' conceal cchar=ℏ

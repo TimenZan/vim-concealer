@@ -104,6 +104,7 @@ syntax keyword Boolean false conceal cchar=𝐅
 syntax keyword Boolean FALSE conceal cchar=𝐅
 syntax keyword Boolean true conceal cchar=𝐓
 syntax keyword Boolean TRUE conceal cchar=𝐓
+syntax keyword Constant undefined conceal cchar=⊥
 syntax keyword Constant NULL null Null conceal cchar=∅
 syntax keyword Constant None conceal cchar=∅
 syntax keyword Constant Some conceal cchar=✔
@@ -127,6 +128,8 @@ syntax match Normal '[^=,] \zs||\ze ' conceal cchar=∨
 " syntax match Operator '||' conceal cchar=∨
 syntax match Operator '\<and\>' conceal cchar=∧
 syntax match Operator '&&' conceal cchar=∧
+" syntax match Operator '||\ze[[:alpha:][:space:]_([]' conceal cchar=∨
+" syntax match Operator '&&\ze[[:alpha:][:space:]_([]' conceal cchar=∧
 " syntax match Normal '\v(^|\s|\W)\zs\&\&\ze(\W|$)' conceal cchar=∧
 " include the space after “not” – if present – so that “not a” becomes “¬a”.
 " also, don't hide “not” behind  ‘¬’ if it is after “is ”.
