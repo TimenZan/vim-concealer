@@ -77,19 +77,20 @@ syntax match Type '\v<complex(\(|[^\s)\],:])@!' conceal cchar=ℂ
 syntax match Type '\v<str(\(|[^\s)\],:])@!' conceal cchar=𝐒
 syntax match Type '\v<bool(\(|[^\s)\],:])@!' conceal cchar=𝔹
 
-" TODO(feat): add [u]intXX_t types
 " TODO(feat): avoid or change if `void*` or `void *`
 " TODO(cosmetic): distinguish void and null
 syntax keyword Type void         conceal cchar=∅
 syntax keyword Type boolean         conceal cchar=𝔹
+syntax keyword Type bool conceal cchar=𝔹
 syntax keyword Type unsigned size_t    conceal cchar=ℕ
-syntax keyword Type int Integer short long Long    conceal cchar=ℤ
+syntax match Type '\vint|Integer|short|long|Long' conceal cchar=ℤ
+syntax match Type '\vint\d\d\_t' conceal cchar=ℤ
+syntax match Type '\vuint\d\d\_t' conceal cchar=ℕ
 syntax keyword Type char         conceal cchar=∁
 syntax keyword Type float Float conceal cchar=ℝ
 syntax keyword Type double Double conceal cchar=𝔻
-syntax keyword Type str string String conceal cchar=𝐒
+syntax match Type '\vstr|string|String|conceal' cchar=𝐒
 syntax match Normal '\v<String(::)?(new|from)?' conceal cchar=𝐒
-" TODO(feat): add Rust etc types
 syntax keyword Type f32 conceal cchar=ℝ
 syntax keyword Type f64 conceal cchar=𝔻
 syntax keyword Type i32 conceal cchar=ℤ
@@ -100,26 +101,22 @@ syntax match Type '\<Nat\>'  conceal cchar=ℕ
 syntax keyword Type u32 conceal cchar=ℕ
 syntax keyword Type u64 conceal cchar=ℕ
 syntax keyword Type usize conceal cchar=ℕ
-syntax keyword Type bool conceal cchar=𝔹
 syntax match Type '\<Rational\>' conceal cchar=ℚ
 
 
-" TODO(refactor): Make case insensitive
-syntax keyword Boolean True conceal cchar=𝐓
-syntax keyword Boolean False conceal cchar=𝐅
-syntax keyword Boolean false conceal cchar=𝐅
-syntax keyword Boolean FALSE conceal cchar=𝐅
-syntax keyword Boolean true conceal cchar=𝐓
-syntax keyword Boolean TRUE conceal cchar=𝐓
-" syntax match Boolean '\<True\>'  conceal cchar=𝑇
-" syntax match Boolean '\<False\>' conceal cchar=𝐹
+" syntax keyword Boolean True conceal cchar=𝐓
+" syntax keyword Boolean False conceal cchar=𝐅
+" syntax keyword Boolean false conceal cchar=𝐅
+" syntax keyword Boolean FALSE conceal cchar=𝐅
+" syntax keyword Boolean true conceal cchar=𝐓
+" syntax keyword Boolean TRUE conceal cchar=𝐓
+syntax match Boolean '\<\ctrue\>'  conceal cchar=𝑇
+syntax match Boolean '\<\cfalse\>' conceal cchar=𝐹
 syntax keyword Constant undefined conceal cchar=⊥
 syntax keyword Constant NULL null Null conceal cchar=∅
 syntax keyword Constant None conceal cchar=∅
 syntax keyword Constant Some conceal cchar=✔
 syntax keyword Keyword complex conceal cchar=ℂ
-" syntax keyword Keyword bool conceal cchar=𝔹
-
 " syntax match Normal '\v((np|scipy|sp|torch)\.)?arange' conceal cchar=⍳
 
 syntax keyword Builtin any conceal cchar=∃
