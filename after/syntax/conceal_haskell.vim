@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Cf - check a flag. Return true if the flag is specified.
 function! Cf(flag)
     return exists('g:hscoptions') && stridx(g:hscoptions, a:flag) >= 0

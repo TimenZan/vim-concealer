@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Remove the keywords. We'll re-add them below. Use silent in case the group
 " doesn't exist.
 "
