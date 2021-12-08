@@ -33,6 +33,12 @@ augroup set_conceal_syntax
 	autocmd BufNewFile,BufRead * set syntax+=.conceal_words.conceal_greek
 augroup END
 ```
+Make sure to `:set conceallevel=2`, otherwise conceal does not show.
+You can also `:set conceallevel=0` to turn off the replacements.
+
+Look at `:h concealcursor` to modify the behaviour for the line under the
+cursor.
+
 If your colorscheme does not show concealed characters clearly, consider adding
 the following to your `.vimrc`/`init.vim`. This colors concealed text the same
 as `Normal` text (usually white/black).
