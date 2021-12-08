@@ -75,6 +75,8 @@ although I will also look at issues on
 [GitHub](https://github.com/TimenZan/vim-concealer)
 
 ## acknowledgements
+[Inspiration](https://alok.github.io/2018/04/26/using-vim-s-conceal-to-make-languages-more-tolerable/)
+
 Thanks to the following plugins for providing some of the mappings
 
 - [haskellConcealPlus](ttps://github.com/enomsg/vim-haskellConcealPlus)
