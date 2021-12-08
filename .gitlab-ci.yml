@@ -1,0 +1,12 @@
+stages:
+  - validate
+
+vint:
+  image: renovate/pip
+  stage: validate
+  before_script:
+  - pip install vim-vint --user
+  script:
+  - git ls-files --exclude='*.vim' --ignored --cached | xargs /home/ubuntu/.local/bin/vint -V
+
+
