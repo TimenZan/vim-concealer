@@ -1,0 +1,17 @@
+disable matches in comment regions
+consider: `.get(i)`
+array indexing with digits as subscript
+array indexing with single character as subscript where available
+
+[c]: `malloc`, `free`, `case`, `switch`, `default`, `typedef`, `const`
+[rust]: `std::`
+[c++]: `std::`, `auto`
+[java]: `new`, `implements`, `.equals`, `<>`, `()`, `private`, `public`, `static`, `var`
+[java]: `import`, `package`
+[java]: consider: `this`, `.length`, `.size()`, `.isEmpty()`, `.add`, `super`
+[java]: consider: common std class names
+[java]: consider: `TypeName[]` as ², how to handle `TypeName[][]`?
+[java]: `:` in for loop turns into `∈`
+[dart]: `extends`, `switch`, `case`
+[dart]: consider: `child:`, `text:`, `onPressed:`, `super`
+
